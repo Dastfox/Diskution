@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Chat Application</title>
-    <link rel="stylesheet" href="../static/styles/index.css">
-</head>
-<body>
-    <input type="text" id="usernameInput" placeholder="Type your username">
-    <div class="chat-container">
-        <div class="chat-window" id="chatWindow">
-        </div>
-    </div>
-    <div class="input-container">
-        
-        <input type="text" id="messageInput" placeholder="Type your message">
-        <button id="sendButton">Send</button>
-    </div>
-    
-    <script src="https://cdn.socket.io/4.4.0/socket.io.min.js"  crossorigin="anonymous"></script>
+	<head>
+		<title>Chat Application</title>
+		<link
+			rel="stylesheet"
+			href="../static/styles/index.css" />
+	</head>
+	<body>
+		<!-- Add an input field for the username -->
+		<input
+			id="usernameInput"
+			type="text"
+			placeholder="Enter username" />
 
-    <script src="../static/js/chat.js"></script>
-</body>
+		<!-- Add a button to set the username -->
+		<button id="setUsernameButton">Set Username</button>
+		<div class="chat-container">
+			<div
+				class="chat-window"
+				id="chatWindow"></div>
+		</div>
+		<div class="input-container">
+			<input
+				type="text"
+				id="messageInput"
+				placeholder="Type your message" />
+			<button id="sendButton">Send</button>
+		</div>
+
+		<script
+			src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+			crossorigin="anonymous"></script>
+
+		<script src="../static/js/chat.js"></script>
+	</body>
 </html>

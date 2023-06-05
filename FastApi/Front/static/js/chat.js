@@ -1,5 +1,6 @@
 // Establish a Socket.IO connection
 const socket = io('http://localhost:8000');
+let username = ''; // Initialize the username variable
 
 // Function to display a message in the chat window
 function displayMessage(user, message) {
@@ -13,10 +14,12 @@ function displayMessage(user, message) {
 function sendMessage() {
 	const messageInput = document.getElementById('messageInput');
 	const message = messageInput.value;
-	const usernameInput = document.getElementById('usernameInput');
-	const username = usernameInput.value;
-	const data = { username: username, message: message };
-	socket.emit('message', data);
+	const data = JSON.stringify({ username: username, message: message });
+	if (socket.readyState === WebSocket.OPEN) {
+		socket.send(data);
+	} else {
+		displayMessage('Cannot send message, connection is not open');
+	}
 	messageInput.value = '';
 }
 
@@ -38,3 +41,23 @@ sendButton.addEventListener('click', function (event) {
 	event.preventDefault();
 	sendMessage();
 });
+
+socket.on('initialMessages', function (messages) {
+	messages.forEach(function (data) {
+		const message = data.message;
+		const user = data.user;
+		displayMessage(user, message);
+	});
+});
+
+// Event listener for WebSocket connection open
+socket.onopen = function () {
+	displayMessage(undefined, 'Connected to chat');
+
+	// Load initial messages
+	initialMessages.forEach(function (data) {
+		const message = data.message;
+		const user = data.user;
+		displayMessage(user, message);
+	});
+};
