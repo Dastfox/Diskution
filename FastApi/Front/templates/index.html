@@ -6,40 +6,75 @@
 			rel="stylesheet"
 			href="../static/styles/index.css" />
 	</head>
+
 	<body>
-		<input
-			id="usernameInput"
-			type="text"
-			placeholder="Enter username" />
-
-		<span
-			id="usernameDisplay"
-			style="display: none"></span>
-
-		<button id="setUsernameButton">Set Username</button>
-		<button
-			id="changeUsernameButton"
-			style="display: none">
-			Change Username
-		</button>
-
-		<div class="chat-container">
-			<div
-				class="chat-window"
-				id="chatWindow"></div>
-		</div>
-		<div class="input-container">
+		<br />
+		<div>
+			<label for="usernameInput">Enter username:</label>
+			<button id="setUsernameButton">Set Username</button>
 			<input
+				id="usernameInput"
 				type="text"
-				id="messageInput"
-				placeholder="Type your message" />
-			<button id="sendButton">Send</button>
+				placeholder="Enter username" />
+
+			<span
+				id="usernameError"
+				style="color: red; display: none"></span>
+			<span id="usernameDisplay"></span>
+		</div>
+		<br />
+		<hr />
+		<br />
+		<div>
+			<label for="conversationSelect">Select conversation:</label>
+			<select id="conversationSelect"></select>
+			<button id="setConversationButton">Join Conversation</button>
+			<span
+				id="conversationError"
+				style="color: red; display: none"></span>
+		</div>
+		<br />
+		<hr />
+		<br />
+
+		<div
+			id="createConversationDiv"
+			style="display: none">
+			<label for="conversationCreateInput">Create conversation:</label>
+			<input
+				id="conversationCreateInput"
+				type="text"
+				placeholder="Enter conversation name" />
+			<button
+				id="createConversationButton"
+				disabled>
+				Create Conversation
+			</button>
+			<br />
+			<br />
+			<label for="guestSelectInput">Guest input: </label>
+			<input
+				id="guestSelectInput"
+				type="text"
+				placeholder="Enter guest name" />
+			<button id="addGuestButton">Add Guest</button>
+			<span id="guestNameContainer"></span>
+			<span
+				id="guestError"
+				style="color: red; display: none">
+				This user does not exists
+			</span>
+			<span
+				id="guestSameAsUserError"
+				style="color: red; display: none">
+				You can't add yourself as a guest
+			</span>
+			<br />
 		</div>
 
 		<script
 			src="https://cdn.socket.io/4.4.0/socket.io.min.js"
 			crossorigin="anonymous"></script>
-
-		<script src="../static/js/chat.js"></script>
+		<script src="../static/js/index.js"></script>
 	</body>
 </html>

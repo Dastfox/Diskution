@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+
+		<link
+			rel="stylesheet"
+			href="../static/styles/index.css" />
+	</head>
+	<body>
+		<h1 id="title"></h1>
+		<div class="chat-container">
+			<div
+				class="chat-window"
+				id="chatWindow"></div>
+		</div>
+		<div class="input-container">
+			<input
+				type="text"
+				id="messageInput"
+				placeholder="Type your message" />
+			<button id="sendButton">Send</button>
+		</div>
+
+		<!-- SCRIPTS -->
+		<script
+			src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+			crossorigin="anonymous"></script>
+		<script>
+			var conversation = {{ conversation | tojson | safe }};
+		</script>
+
+		<script src="../static/js/chat.js"></script>
+	</body>
+</html>
