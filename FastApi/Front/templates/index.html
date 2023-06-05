@@ -7,14 +7,22 @@
 			href="../static/styles/index.css" />
 	</head>
 	<body>
-		<!-- Add an input field for the username -->
 		<input
 			id="usernameInput"
 			type="text"
 			placeholder="Enter username" />
 
-		<!-- Add a button to set the username -->
+		<span
+			id="usernameDisplay"
+			style="display: none"></span>
+
 		<button id="setUsernameButton">Set Username</button>
+		<button
+			id="changeUsernameButton"
+			style="display: none">
+			Change Username
+		</button>
+
 		<div class="chat-container">
 			<div
 				class="chat-window"

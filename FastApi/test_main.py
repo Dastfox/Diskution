@@ -57,3 +57,28 @@ def test_shutdown_event(mock_close):
         response = client.get("/")
         assert response.status_code == 200
     mock_close.assert_called_once()
+
+
+@mock.patch("sqlite3.connect")
+@mock.patch("sqlite3.Cursor")
+def test_insert_message(mock_cursor, mock_connect):
+    mock_connect.return_value.cursor.return_value = mock_cursor
+    db = Database(":memory:")
+    username = "test"
+    message = "test_message"
+    db.insert_message(username, message)
+    mock_cursor.execute.assert_called_with(
+        "INSERT INTO messages (username, message) VALUES (?, ?)",
+        (username, message),
+    )
+    mock_connect.return_value.commit.assert_called_once()
+
+
+@mock.patch("sqlite3.connect")
+@mock.patch("sqlite3.Cursor")
+def test_close(mock_cursor, mock_connect):
+    mock_connect.return_value.cursor.return_value = mock_cursor
+    db = Database(":memory:")
+    db.close()
+    mock_cursor.close.assert_called_once()
+    mock_connect.return_value.close.assert_called_once()
