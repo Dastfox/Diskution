@@ -5,8 +5,12 @@
 ## Installation
 
 ```bash
+python -m venv .env
+.env/scripts/activate
 pip install -r requirements.txt
 ```
+
+put your OpenAi secret key in the secret_key.txt
 
 ## Usage
 

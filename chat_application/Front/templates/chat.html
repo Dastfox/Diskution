@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title id="head_title"></title>
+		<link
+			rel="icon"
+			href="{{ url_for('static', path='favicon.ico') }}"
+			type="image/x-icon" />
+
+		<link
+			rel="stylesheet"
+			href="../static/styles/index.css" />
+	</head>
+	<body>
+		<h1 id="title"></h1>
+		<div class="chat-container">
+			<div
+				class="chat-window"
+				id="chatWindow"></div>
+		</div>
+		<div class="input-container">
+			<input
+				type="text"
+				id="messageInput"
+				placeholder="Type your message" />
+			<button id="sendButton">Send</button>
+		</div>
+		<br />
+		<button
+			id="robot_button"
+			style="display: none">
+			Ask Robot
+		</button>
+		<br />
+		<div
+			id="robot_proposition"
+			style="display: none"></div>
+		<button
+			id="send_proposition"
+			style="display: none">
+			Send
+		</button>
+		<!-- SCRIPTS -->
+		<script
+			src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+			crossorigin="anonymous"></script>
+		<script>
+			var conversation = '{{ conversation | safe }}';
+		</script>
+
+		<script src="../static/js/chat.js"></script>
+	</body>
+</html>
