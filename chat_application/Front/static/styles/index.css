@@ -1,0 +1,41 @@
+.chat-container {
+	height: 300px;
+	overflow-y: scroll;
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+.message {
+	margin-bottom: 10px;
+}
+
+.user {
+	font-weight: bold;
+}
+
+.timestamp {
+	font-size: small;
+	color: #888;
+}
+
+.input-container {
+	margin-top: 10px;
+}
+
+input {
+	width: 30%;
+	height: 30px;
+}
+
+.robot_section {
+	display: flex;
+	flex-direction: column;
+}
+
+#custom_prompt_panel {
+	/* margin-left: auto; */
+	margin-top: 0;
+	max-width: 50%;
+	border-color: black;
+	border-style: solid;
+}

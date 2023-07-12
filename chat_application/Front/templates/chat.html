@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title id="head_title"></title>
+		<link
+			rel="icon"
+			href="{{ url_for('static', path='favicon.ico') }}"
+			type="image/x-icon" />
+
+		<link
+			rel="stylesheet"
+			href="../static/styles/index.css" />
+	</head>
+	<body>
+		<h1 id="title"></h1>
+		<div class="chat-container">
+			<div
+				class="chat-window"
+				id="chatWindow"></div>
+		</div>
+		<div class="input-container">
+			<input
+				type="text"
+				id="messageInput"
+				placeholder="Type your message" />
+			<button id="sendButton">Send</button>
+		</div>
+		<!-- <br /> -->
+
+		<div
+			id="robot_section"
+			style="display: none">
+			<hr />
+			<button id="robot_button">Ask Robot</button>
+
+			<br />
+			This what will be sent to the robot:<br />
+			<div
+				id="robot_proposition"
+				style="display: none"></div>
+			<button
+				id="send_proposition"
+				style="display: none">
+				Send
+			</button>
+			<button id="custom_prompt_panel_button">custom prompt panel</button>
+			<div
+				id="custom_prompt_panel"
+				style="display: none">
+				<h2>Pre-prompt:</h2>
+				default is : As an interviewer, you have conducted an interview. Your goal is to generate a follow-up question that explores new aspects or perspectives related to the interviewee's expertise while staying on the subject
+				<br />
+				<input
+					type="text"
+					id="pre_prompt_input"
+					placeholder="Type your message" />
+				<br />
+				<form>
+					<label for="Use_default_pre_prompt">Use default pre prompt</label>
+					<input
+						type="checkbox"
+						id="use_default_pre_prompt"
+						name="use_default_pre_prompt"
+						checked />
+				</form>
+
+				<hr />
+
+				<h2>Conversation:</h2>
+				<button id="show_conversation">show_conversation</button>
+				<br />
+				<span
+					id="conversation_display"
+					style="display: none"></span>
+				<hr />
+				<h2>Prompt:</h2>
+				default is: Generate a follow-up question that builds upon the guest's expertise and encourages them to share unique insights or experiences, while staying within the scope of the interview topic. Generate only the question.
+				<br />
+				<input
+					type="text"
+					id="prompt_input"
+					placeholder="Type your message" />
+				<form>
+					<label for="Use_default_prompt">Use default prompt</label>
+					<input
+						type="checkbox"
+						id="use_default_prompt"
+						name="Use_default_prompt"
+						checked />
+				</form>
+			</div>
+		</div>
+		<!-- SCRIPTS -->
+		<script
+			src="https://cdn.socket.io/4.4.0/socket.io.min.js"
+			crossorigin="anonymous"></script>
+		<script>
+			var conversation = '{{ conversation | safe }}';
+		</script>
+
+		<script src="../static/js/chat.js"></script>
+	</body>
+</html>
