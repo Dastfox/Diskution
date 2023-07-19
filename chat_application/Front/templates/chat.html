@@ -9,85 +9,135 @@
 
 		<link
 			rel="stylesheet"
-			href="../static/styles/index.css" />
+			href="../static/styles/chat.css" />
 	</head>
 	<body>
-		<h1 id="title"></h1>
-		<div class="chat-container">
-			<div
-				class="chat-window"
-				id="chatWindow"></div>
-		</div>
-		<div class="input-container">
-			<input
-				type="text"
-				id="messageInput"
-				placeholder="Type your message" />
-			<button id="sendButton">Send</button>
-		</div>
-		<!-- <br /> -->
-
-		<div
-			id="robot_section"
-			style="display: none">
-			<hr />
-			<button id="robot_button">Ask Robot</button>
-
-			<br />
-			This what will be sent to the robot:<br />
-			<div
-				id="robot_proposition"
-				style="display: none"></div>
-			<button
-				id="send_proposition"
-				style="display: none">
-				Send
-			</button>
-			<button id="custom_prompt_panel_button">custom prompt panel</button>
-			<div
-				id="custom_prompt_panel"
-				style="display: none">
-				<h2>Pre-prompt:</h2>
-				default is : As an interviewer, you have conducted an interview. Your goal is to generate a follow-up question that explores new aspects or perspectives related to the interviewee's expertise while staying on the subject
-				<br />
+		<div id="main-window">
+			<h1 id="title"></h1>
+			<div class="chat-container">
+				<div
+					class="chat-window"
+					id="chatWindow"></div>
+			</div>
+			<div class="input-container">
 				<input
 					type="text"
-					id="pre_prompt_input"
+					id="messageInput"
 					placeholder="Type your message" />
-				<br />
-				<form>
-					<label for="Use_default_pre_prompt">Use default pre prompt</label>
-					<input
-						type="checkbox"
-						id="use_default_pre_prompt"
-						name="use_default_pre_prompt"
-						checked />
-				</form>
+				<button id="sendButton">
+					<?xml version="1.0" encoding="iso-8859-1"?>
+					<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+					<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+					<svg
+						id="send_icon"
+						fill="currentColor"
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+						viewBox="0 0 495.003 495.003"
+						xml:space="preserve">
+						<g id="XMLID_51_">
+							<path
+								id="XMLID_53_"
+								d="M164.711,456.687c0,2.966,1.647,5.686,4.266,7.072c2.617,1.385,5.799,1.207,8.245-0.468l55.09-37.616
+							l-67.6-32.22V456.687z" />
+							<path
+								id="XMLID_52_"
+								d="M492.431,32.443c-1.513-1.395-3.466-2.125-5.44-2.125c-1.19,0-2.377,0.264-3.5,0.816L7.905,264.422
+							c-4.861,2.389-7.937,7.353-7.904,12.783c0.033,5.423,3.161,10.353,8.057,12.689l125.342,59.724l250.62-205.99L164.455,364.414
+							l156.145,74.4c1.918,0.919,4.012,1.376,6.084,1.376c1.768,0,3.519-0.322,5.186-0.977c3.637-1.438,6.527-4.318,7.97-7.956
+							L494.436,41.257C495.66,38.188,494.862,34.679,492.431,32.443z" />
+						</g>
+					</svg>
+				</button>
+			</div>
+			<div
+				id="robot_section"
+				style="display: none">
+				<div id="robot_bar">
+					<button id="robot_button">
+						Ask Robot
+						<?xml version="1.0" encoding="utf-8"?>
+						<svg
+							id="robot_icon"
+							width="50px"
+							height="50px"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M9 15C8.44771 15 8 15.4477 8 16C8 16.5523 8.44771 17 9 17C9.55229 17 10 16.5523 10 16C10 15.4477 9.55229 15 9 15Z"
+								fill="#currentColor" />
+							<path
+								d="M14 16C14 15.4477 14.4477 15 15 15C15.5523 15 16 15.4477 16 16C16 16.5523 15.5523 17 15 17C14.4477 17 14 16.5523 14 16Z"
+								fill="#currentColor" />
+							<path
+								fill-rule="evenodd"
+								clip-rule="evenodd"
+								d="M12 1C10.8954 1 10 1.89543 10 3C10 3.74028 10.4022 4.38663 11 4.73244V7H6C4.34315 7 3 8.34315 3 10V20C3 21.6569 4.34315 23 6 23H18C19.6569 23 21 21.6569 21 20V10C21 8.34315 19.6569 7 18 7H13V4.73244C13.5978 4.38663 14 3.74028 14 3C14 1.89543 13.1046 1 12 1ZM5 10C5 9.44772 5.44772 9 6 9H7.38197L8.82918 11.8944C9.16796 12.572 9.86049 13 10.618 13H13.382C14.1395 13 14.832 12.572 15.1708 11.8944L16.618 9H18C18.5523 9 19 9.44772 19 10V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V10ZM13.382 11L14.382 9H9.61803L10.618 11H13.382Z"
+								fill="#currentColor" />
+							<path
+								d="M1 14C0.447715 14 0 14.4477 0 15V17C0 17.5523 0.447715 18 1 18C1.55228 18 2 17.5523 2 17V15C2 14.4477 1.55228 14 1 14Z"
+								fill="#currentColor" />
+							<path
+								d="M22 15C22 14.4477 22.4477 14 23 14C23.5523 14 24 14.4477 24 15V17C24 17.5523 23.5523 18 23 18C22.4477 18 22 17.5523 22 17V15Z"
+								fill="#currentColor" />
+						</svg>
+					</button>
 
-				<hr />
-
-				<h2>Conversation:</h2>
-				<button id="show_conversation">show_conversation</button>
-				<br />
-				<span
-					id="conversation_display"
-					style="display: none"></span>
-				<hr />
-				<h2>Prompt:</h2>
-				default is: Generate a follow-up question that builds upon the guest's expertise and encourages them to share unique insights or experiences, while staying within the scope of the interview topic. Generate only the question.
-				<br />
-				<input
-					type="text"
-					id="prompt_input"
-					placeholder="Type your message" />
-				<form>
-					<label for="Use_default_prompt">Use default prompt</label>
+					<button id="custom_prompt_panel_button">Custom prompt panel</button>
+				</div>
+				<div
+					id="robot_proposition"
+					style="display: none"></div>
+				<button
+					id="send_proposition"
+					style="display: none">
+					Send
+				</button>
+				<div
+					id="custom_prompt_panel"
+					style="display: none">
+					<h2>Pre-prompt:</h2>
+					default is : As an interviewer, you have conducted an interview. Your goal is to generate a follow-up question that explores new aspects or perspectives related to the interviewee's expertise while staying on the subject
+					<br />
 					<input
-						type="checkbox"
-						id="use_default_prompt"
-						name="Use_default_prompt"
-						checked />
-				</form>
+						type="text"
+						id="pre_prompt_input"
+						placeholder="Type your message" />
+					<br />
+					<form>
+						<label for="Use_default_pre_prompt">Use default pre prompt</label>
+						<input
+							type="checkbox"
+							id="use_default_pre_prompt"
+							name="use_default_pre_prompt"
+							checked />
+					</form>
+
+					<h2>Conversation:</h2>
+					<button id="show_conversation">Show conversation</button>
+					<br />
+					<span
+						id="conversation_display"
+						style="display: none"></span>
+
+					<h2>Prompt:</h2>
+					default is: Generate a follow-up question that builds upon the guest's expertise and encourages them to share unique insights or experiences, while staying within the scope of the interview topic. Generate only the question.
+					<br />
+					<input
+						type="text"
+						id="prompt_input"
+						placeholder="Type your message" />
+					<form>
+						<label for="Use_default_prompt">Use default prompt</label>
+						<input
+							type="checkbox"
+							id="use_default_prompt"
+							name="Use_default_prompt"
+							checked />
+					</form>
+				</div>
 			</div>
 		</div>
 		<!-- SCRIPTS -->

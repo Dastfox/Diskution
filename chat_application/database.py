@@ -1,20 +1,26 @@
 from contextlib import contextmanager
+from datetime import datetime
 import json
-from sqlalchemy import create_engine, Column, Integer, String, func
+from sqlalchemy import DateTime, create_engine, Column, Integer, String, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import joinedload
 from sqlalchemy import or_
-
+from sqlalchemy.sql import func
 
 Base = declarative_base()
+
+def current_time():
+    now = datetime.now()
+    return now.replace(microsecond=0)
+
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     username = Column(String, nullable=False)
     messages = relationship("Message", back_populates="user")
 
@@ -22,7 +28,7 @@ class User(Base):
 class Conversation(Base):
     __tablename__ = "conversations"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     title = Column(String, nullable=False)
     host_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     guest_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
@@ -37,13 +43,13 @@ class Conversation(Base):
 class Message(Base):
     __tablename__ = "messages"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     content = Column(String, nullable=False)
-    user_id = Column(Integer, ForeignKey("users.id",  ondelete="CASCADE"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
     conversation_id = Column(Integer, ForeignKey("conversations.id", ondelete="CASCADE"))
     user = relationship("User", back_populates="messages")
     conversation = relationship("Conversation", back_populates="messages")
-    timestamp = Column(Integer, nullable=False)
+    timestamp = Column(DateTime, default=current_time)
     
     def __str__(self):
         return f"{self.user.username}: {self.content}"
@@ -133,7 +139,6 @@ class Database:
                 content=content,
                 user_id=user.id,
                 conversation_id=conversation.id,
-                timestamp=func.now(),
             )
             session.add(msg)
             session.commit()
@@ -204,3 +209,5 @@ class Database:
         with self.Session() as session:
             messages = session.query(Message).filter(Message.conversation_id == conv_id).all()
             return messages
+
+

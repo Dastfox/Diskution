@@ -13,15 +13,13 @@
 
 	<body>
 		<h1>Diskution</h1>
-		<hr />
 		<br />
-		<div>
-			<label for="usernameInput">Enter username:</label>
-			<button id="setUsernameButton">Set Username</button>
+		<div id="username_field">
 			<input
 				id="usernameInput"
 				type="text"
 				placeholder="Enter username" />
+			<button id="setUsernameButton">Set Username</button>
 			<span
 				id="conversationError"
 				style="color: red; display: none"></span>
@@ -31,47 +29,42 @@
 				style="color: red; display: none"></span>
 			<span id="usernameDisplay"></span>
 		</div>
-		<br />
-		<hr />
-		<br />
 		<div
 			id="selectConversationDiv"
 			style="display: none">
-			<label for="conversationSelect">Select conversation:</label>
 			<select id="conversationSelect"></select>
 			<button id="setConversationButton">Join Conversation</button>
 			<br />
-			<hr />
 			<br />
 		</div>
 
 		<div
 			id="createConversationDiv"
 			style="display: none">
-			<label for="conversationCreateInput">Create conversation:</label>
-			<input
-				id="conversationCreateInput"
-				type="text"
-				placeholder="Enter conversation name" />
-			<button
-				id="createConversationButton"
-				disabled>
-				Create Conversation
-			</button>
-			<br />
-			<br />
-			<label for="guestSelectInput">Guest input: </label>
-			<input
-				id="guestSelectInput"
-				type="text"
-				placeholder="Enter guest name" />
-			<button id="addGuestButton">Add Guest</button>
-			<span id="guestNameContainer"></span>
-			<span
-				id="error"
-				style="color: red; display: none">
-			</span>
-			<br />
+			<div id="conversationNameContainer">
+				<input
+					id="conversationCreateInput"
+					type="text"
+					placeholder="Enter conversation name" />
+				<button
+					id="createConversationButton"
+					disabled>
+					Create Conversation
+				</button>
+			</div>
+			<div id="conversationNameContainer">
+				<input
+					id="guestSelectInput"
+					type="text"
+					placeholder="Enter guest name" />
+				<button id="addGuestButton">Add Guest</button>
+				<span id="guestNameContainer"></span>
+				<span
+					id="error"
+					style="color: red; display: none">
+				</span>
+				<br />
+			</div>
 		</div>
 
 		<script

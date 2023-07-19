@@ -1,0 +1,19 @@
+{
+	"id": "cmpl-7dz8h1jlPxLZga4ro1lKvUcupuN5s",
+	"object": "text_completion",
+	"created": 1689764167,
+	"model": "text-davinci-003",
+	"choices": [
+		{
+			"text": "\n\nTHIS IS A MOCK RESPONSE CHANGE MOCK TO FALSE IN \"openai_call.py\" IF YOU WANT A ROBOT GENERATED ONE",
+			"index": 0,
+			"logprobs": null,
+			"finish_reason": "length"
+		}
+	],
+	"usage": {
+		"prompt_tokens": 98,
+		"completion_tokens": 10,
+		"total_tokens": 108
+	}
+}

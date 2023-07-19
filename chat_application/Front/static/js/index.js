@@ -54,7 +54,7 @@ class Index {
 			this.conversationError.style.display = 'none';
 			const username = this.usernameInput.value;
 			this.socket.emit('username_set', username);
-			this.createConversationDiv.style.display = 'block';
+			this.createConversationDiv.style.display = 'flex';
 			this.usernameInput.style.display = 'none';
 			this.setUsernameButton.textContent = 'Change Username';
 			this.username = username;
@@ -88,7 +88,7 @@ class Index {
 			this.guestSelectInput.value = ''; // Reset the input value
 			this.guestSelectInput.disabled = false; // Enable the input field
 			this.addGuestButton.textContent = 'Add Guest'; // Change the button text
-			this.error.style.display = 'block'; // show the error
+			this.error.style.display = 'flex'; // show the error
 			this.error.textContent = 'Guest name cannot be the same as your username';
 		} else {
 			this.error.style.display = 'none'; // hide the error
@@ -105,7 +105,7 @@ class Index {
 				this.guestName = guestName;
 			});
 			this.socket.on('username_does_not_exist', () => {
-				error.style.display = 'block';
+				error.style.display = 'flex';
 				error.textContent = 'User does not exist';
 				// User does not exist
 				console.log('username_does_not_exist');
@@ -132,7 +132,7 @@ class Index {
 		this.conversations = conversations;
 		console.log('handleLoadConversations', this.conversations);
 		if (conversations.length != 0) {
-			this.selectConversationDiv.style.display = 'block';
+			this.selectConversationDiv.style.display = 'flex';
 		}
 
 		while (this.conversationSelect.firstChild) {
@@ -161,7 +161,7 @@ class Index {
 
 	handleError(error) {
 		this.conversationError.textContent = error;
-		this.conversationError.style.display = 'block';
+		this.conversationError.style.display = 'flex';
 	}
 }
 

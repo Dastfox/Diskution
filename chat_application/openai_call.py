@@ -1,4 +1,5 @@
 
+import json
 import os
 import openai
 from dotenv import load_dotenv
@@ -7,10 +8,10 @@ load_dotenv()
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
-
+MOCK = True
 
 TEMPERATURE = 0.5
-MAX_TOKENS = 10
+MAX_TOKENS = 100
 NUMBER_OF_GENERATED_QUESTIONS = 1
 ENGINE = "text-davinci-003" # text-curie-001 or text-davinci-003 are giving the best results  so far
 PREPROMPT = "As an interviewer, you have conducted an interview. Your goal is to generate a follow-up question that explores new aspects or perspectives related to the interviewee's expertise while staying on the subject"
@@ -67,17 +68,22 @@ def get_follow_up_question(
     else:
         topic = ""
     
-    
-    response = openai.Completion.create(
-        model=engine,
-        prompt=f"{pre_prompt}{topic}\n{json_podcast_transcript}\n{prompt}",
-        temperature=temperature,
-        max_tokens=max_tokens,
-        n=n,
-        stop=None,
-    )
+    if not MOCK:
+        response = openai.Completion.create(
+            model=engine,
+            prompt=f"{pre_prompt}{topic}\n{json_podcast_transcript}\n{prompt}",
+            temperature=temperature,
+            max_tokens=max_tokens,
+            n=n,
+            stop=None,
+        )
+    else:
+        with open(os.path.join(dir_path, "MOCK.json"), "r") as f:
+            print(f)
+            response = json.load(f)
+
     print("response", response)
 
-    generated_text = response.choices[0].get("text", None).strip()
+    generated_text = response['choices'][0].get("text", None).strip()
     print("generated_text", generated_text)
     return generated_text

@@ -6,14 +6,22 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from chat_application.database import Database
 from chat_application.openai_call import get_follow_up_question
+from dotenv import load_dotenv
+import os
+
 
 sio = socketio.AsyncServer(async_mode="asgi")
 app = FastAPI()
 templates = Jinja2Templates(directory="chat_application/Front/templates")
 app.mount("/static", StaticFiles(directory="chat_application/Front/static"), name="static")
+# get env db user and password
 
+load_dotenv()
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
 # Create database instance and setup the database
-db = Database("sqlite:///db.sqlite3")
+db_url = f'mysql+pymysql://{db_user}:{db_password}@localhost:3306/db'
+db = Database(db_url)
 db.setup()
 
 

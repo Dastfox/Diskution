@@ -1,41 +1,109 @@
-.chat-container {
-	height: 300px;
-	overflow-y: scroll;
-	border: 1px solid #ccc;
-	padding: 10px;
+@font-face {
+	font-family: 'Roboto-Medium';
+	src: url('../font/Roboto-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Sachila Residance';
+	src: url('../font/Sachila Residance.ttf') format('truetype');
 }
 
-.message {
-	margin-bottom: 10px;
-}
-
-.user {
-	font-weight: bold;
-}
-
-.timestamp {
-	font-size: small;
-	color: #888;
-}
-
-.input-container {
-	margin-top: 10px;
-}
-
-input {
-	width: 30%;
-	height: 30px;
-}
-
-.robot_section {
+body {
+	font-family: 'Roboto-Medium', sans-serif !important;
+	background-color: #e0e5ec;
+	padding: 20px;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+h1 {
+	font-family: 'Sachila Residance', cursive;
+	color: #f4626b;
+	text-align: center;
+}
+
+hr {
+	border-top: 1px solid #ccc;
+}
+
+#usernameInput,
+#conversationCreateInput,
+#guestSelectInput {
+	flex: 1;
+	margin-right: 10px;
+	padding: 10px;
+	height: 20px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #f8ffe5;
+}
+
+button {
+	font-family: 'Roboto-Medium', sans-serif;
+	font-size: 20px;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #f4626b;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+button:hover {
+	background-color: #ee8572;
+}
+
+#usernameDisplay,
+#usernameError,
+#conversationError {
+	color: red;
+	display: none;
+}
+
+#selectConversationDiv,
+#createConversationDiv {
+	margin-bottom: 35px;
+	align-items: center;
+	justify-content: center;
 	flex-direction: column;
 }
 
-#custom_prompt_panel {
-	/* margin-left: auto; */
-	margin-top: 0;
-	max-width: 50%;
-	border-color: black;
-	border-style: solid;
+#selectConversationDiv select {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #f8ffe5;
+}
+
+#setUsernameButton {
+	transform: translate(0, 10%);
+	height: 40px;
+}
+
+#setConversationButton {
+	margin-top: 10px;
+	height: 40px;
+	width: 100%;
+	margin-left: 15px;
+	transform: translate(-3%, 0);
+}
+
+#username_field {
+	margin-bottom: 35px;
+}
+
+#conversationNameContainer {
+	margin-top: 35px;
+}
+
+@media (max-width: 600px) {
+	button,
+	input[type='text'],
+	select {
+		width: 90%;
+	}
 }
