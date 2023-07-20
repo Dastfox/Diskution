@@ -3,6 +3,7 @@ import socketio
 from fastapi.testclient import TestClient
 from chat_application.main import app, sio
 
+
 # This is an async fixture that creates a TestClient instance.
 @pytest.fixture
 def client():

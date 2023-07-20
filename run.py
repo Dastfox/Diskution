@@ -5,10 +5,12 @@ from chat_application.openai_call import load_secret_key
 
 import re
 
+
 def create_env_file(key):
     # Create .env file
     with open(".env", "w") as file:
         file.write(f"OPENAI_API_KEY={key}")
+
 
 def input_key():
     # Prompt for secret key
@@ -20,7 +22,7 @@ def input_key():
         create_env_file(secret_key)
         print("Successfully created .env file with the secret key.")
         load_secret_key(secret_key)
-        
+
     else:
         print("Invalid secret key. Please make sure it is in the correct format.")
         exit()

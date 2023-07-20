@@ -12,6 +12,7 @@ from sqlalchemy.sql import func
 
 Base = declarative_base()
 
+
 def current_time():
     now = datetime.now()
     return now.replace(microsecond=0)
@@ -46,11 +47,13 @@ class Message(Base):
     id = Column(Integer, primary_key=True, index=True, autoincrement=True)
     content = Column(String, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"))
-    conversation_id = Column(Integer, ForeignKey("conversations.id", ondelete="CASCADE"))
+    conversation_id = Column(
+        Integer, ForeignKey("conversations.id", ondelete="CASCADE")
+    )
     user = relationship("User", back_populates="messages")
     conversation = relationship("Conversation", back_populates="messages")
     timestamp = Column(DateTime, default=current_time)
-    
+
     def __str__(self):
         return f"{self.user.username}: {self.content}"
 
@@ -59,7 +62,7 @@ class Database:
     def __init__(self, db_url):
         self.engine = create_engine(db_url)
         self.Session = sessionmaker(bind=self.engine)
-        
+
     @contextmanager
     def session_scope(self):
         """Provide a transactional scope around a series of operations."""
@@ -149,13 +152,20 @@ class Database:
         with self.Session() as session:
             user_conversations = (
                 session.query(Conversation)
-                .options(joinedload(Conversation.messages), joinedload(Conversation.guest), joinedload(Conversation.host))  # Eager load messages and users
-                .filter(or_(Conversation.host.has(User.username == username), 
-                            Conversation.guest.has(User.username == username)))  # Filter by the username column
+                .options(
+                    joinedload(Conversation.messages),
+                    joinedload(Conversation.guest),
+                    joinedload(Conversation.host),
+                )  # Eager load messages and users
+                .filter(
+                    or_(
+                        Conversation.host.has(User.username == username),
+                        Conversation.guest.has(User.username == username),
+                    )
+                )  # Filter by the username column
                 .all()
             )
             return user_conversations
-
 
     def convert_conversations_to_json(self, conversations):
         results = []
@@ -163,12 +173,19 @@ class Database:
             for conv in conversations:
                 conv_with_messages = (
                     session.query(Conversation)
-                    .options(joinedload(Conversation.messages), joinedload(Conversation.guest), joinedload(Conversation.host))     
+                    .options(
+                        joinedload(Conversation.messages),
+                        joinedload(Conversation.guest),
+                        joinedload(Conversation.host),
+                    )
                     .filter(Conversation.id == conv.id)
                     .first()
                 )
                 messages = [
-                    {"user": message.user.username, "content": message.content.replace("'", "&apos;")}
+                    {
+                        "user": message.user.username,
+                        "content": message.content.replace("'", "&apos;"),
+                    }
                     for message in conv_with_messages.messages
                 ]
                 result = {
@@ -181,33 +198,34 @@ class Database:
                 results.append(result)
         return json.dumps(results)
 
-
     def get_conversation_by_title(self, title):
         with self.Session() as session:
-            conversation = session.query(Conversation).filter(Conversation.title == title).first()
+            conversation = (
+                session.query(Conversation).filter(Conversation.title == title).first()
+            )
             return conversation
-        
+
     def delete_conversation(self, conversation):
         with self.Session() as session:
             session.delete(conversation)
             session.commit()
             return True
-        
+
     def delete_message(self, message):
         with self.Session() as session:
             session.delete(message)
             session.commit()
             return True
-        
+
     def delete_user(self, user):
         with self.Session() as session:
             session.delete(user)
             session.commit()
             return True
-        
+
     def get_messages_by_conv_id(self, conv_id):
         with self.Session() as session:
-            messages = session.query(Message).filter(Message.conversation_id == conv_id).all()
+            messages = (
+                session.query(Message).filter(Message.conversation_id == conv_id).all()
+            )
             return messages
-
-

@@ -126,7 +126,7 @@ class Chat {
 }
 
 window.onload = () => {
-	const chat = new Chat(sessionStorage.getItem('username'), io('http://localhost:8000'));
+	const chat = new Chat(sessionStorage.getItem('username'), io(serverUrl, { transports: ['polling'] }));
 	document.getElementById('sendButton').addEventListener('click', (event) => {
 		event.preventDefault();
 		chat.sendMessage(this.messageInput.value);

@@ -25,7 +25,7 @@ class Index {
 	initializeSelectors() {
 		this.selectors.forEach((selector) => (this[selector] = document.getElementById(selector)));
 		this.conversations = [];
-		this.socket = io('http://localhost:8000');
+		this.socket = io(serverUrl, { transports: ['polling'] });
 	}
 
 	initializeEvents() {
