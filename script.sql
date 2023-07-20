@@ -25,7 +25,7 @@ CREATE TABLE messages (
     content VARCHAR(255) NOT NULL,
     user_id INT,
     conversation_id INT,
-    timestamp INT NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
     FOREIGN KEY (conversation_id) REFERENCES conversations (id) ON DELETE CASCADE
 );
